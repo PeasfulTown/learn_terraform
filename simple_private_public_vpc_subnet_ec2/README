@@ -1,0 +1,9 @@
+Simple VPC with private and public subnets, internet gateway to allow connection
+to internet, and NAT Gateway to enable private subnet to connect to internet
+(may be needed for the private instance to update packages), while still
+disallowing public inbound traffic.
+
+This is a manual VPC setup (not using terraform's VPC module).
+
+Careful when applying this as NAT Gatway is not free tier eligible and will
+incur costs even when unattached.
