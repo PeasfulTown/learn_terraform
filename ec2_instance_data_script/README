@@ -1,0 +1,17 @@
+An example of provisioning EC2 instances with user data scripts to initializing,
+this example assumes that there is an existing s3 bucket containing an
+application binary.
+
+The s3 bucket must have account regional namespace, with the bucket name prefix
+being `application-bin`, and the application binary file in that bucket must
+have the name `app`. So the full s3 bucket object path would look something
+like: `s3://application-bin-000000000000-us-east-1-an/app`
+
+A VPC endpoint was provisioned because the instance on which the application
+will be run is deployed on a private subnet (intra subnet) without a NAT gateway
+to outside internet, a VPC endpoint allows such an instance to connect to s3
+bucket, the instance in the private subnet can be completely isolated from the
+outside world while still being able to fetch from an s3 bucket.
+
+This could be improved by having a `variables.tf` and allow a user to provide
+the s3 bucket object as an argument.
